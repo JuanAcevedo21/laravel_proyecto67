@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
 
     public function index()
     {
+        if (session('user') !== 'admin') {
+            return redirect()->route('home');
+        }
+
         $product = Producto::all();
         return view('productos.index', compact('product'));
     }
@@ -65,6 +70,15 @@ class ProductoController extends Controller
 
     public function destroy(string $id)
     {
-        //
+        $product = Producto::find($id);
+        if ($product) {
+
+            if ($product->imagen) {
+                Storage::delete($product->imagen);
+            }
+            $product->delete();
+            return 'Producto eliminado correctamente';
+        }
+        return 'Producto no encontrado';
     }
 }

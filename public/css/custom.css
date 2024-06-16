@@ -1,0 +1,121 @@
+.body {
+    padding-top: 70px;
+}
+.navbar {
+    background-color: #6E6E6E !important;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    left: 0;
+    z-index: 10;
+}
+.navbar-brand{
+    font-size: 2rem;
+    color: #FFFFFF;
+    margin-right: auto;
+}
+.nav-link {
+    font-size: 1.25rem;
+    color: #FFFFFF;
+}
+.btn-light {
+    color: #FFFFFF !important;
+    background-color: #BAFF39!important;
+    font-size: 1.25rem;
+    padding: 0.5rem 3rem ;
+}
+.btn-primary {
+    background-color: #259CFF !important;
+    border-color: #0080ff !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+
+.btn-danger {
+    background-color: #FF1414 !important;
+    border-color: #c40000 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.card {
+    background-color: #f8f9fa !important;
+    border: 1px solid #6E6E6E !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1.5rem;
+    padding: 1.5rem;
+}
+
+
+.card-title {
+    color: #004080 !important;
+}
+
+
+.card-text {
+    color: #333333 !important;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-body p {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+}
+.text-center {
+    display: block;
+}
+form.d-flex {
+    justify-content: center;
+    width: 40%;
+}
+
+.footer {
+    color: #FFFFFF;
+}
+
+.footer {
+    background-color: #6E6E6E;
+    color: white;
+    padding: 50rem 20rem;
+    font-size: 1.05rem;
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer p{
+    margin-bottom: 10px;
+}
+.footer .container {
+    max-width: 960px;
+}
+
+.footer .row {
+    justify-content: space-between;
+}

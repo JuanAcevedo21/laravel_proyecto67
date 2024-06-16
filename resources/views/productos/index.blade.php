@@ -3,9 +3,14 @@
 @section('titulo', 'Agregar productos')
 
 @section('content')
-<br>
-<h3 class="text-center">Listado de productos disponibles</h3>
-<br>
+<div>
+    <div class="bienv text-center">
+        <br>
+        <h2>Bienvenido!!!</h2>
+        <br>
+    </div>
+    <h3 class="text-center">Listado de productos disponibles</h3>
+    <br>
 <div class="row">
     @foreach ($product as $demanda)
         <div class="col-sm">
@@ -15,11 +20,17 @@
                   <h5 class="card-title">{{$demanda->nombre}}</h5>
                   <p class="card-text">{{$demanda->descripcion}}</p>
                   <a href="/productos/{{$demanda->id}}" class="btn btn-primary">Ver detalles</a>
+                  <form action="{{ route('productos.destroy', $demanda->id) }}" method="POST" class="mt-2">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este producto?')">Eliminar</button>
+                </form>
                 </div>
             </div>
             <br>
         </div>
     @endforeach
+</div>
 </div>
 
 @endsection
