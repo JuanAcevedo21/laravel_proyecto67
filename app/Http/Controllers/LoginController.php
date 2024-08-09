@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -13,21 +14,23 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only('username', 'password');
+        $credentials = $request->only('email', 'password');
 
-        if ($credentials['username'] === 'admin' && $credentials['password'] === 'admin') {
-            session(['user' => 'admin']);
+        if (Auth::attempt($credentials)) {
+            // Autenticación exitosa
             return redirect()->route('productos.index');
         }
 
         return back()->withErrors([
-            'username' => 'Las credenciales no coinciden con nuestros registros.',
+            'email' => 'Las credenciales no coinciden con nuestros registros.',
         ]);
     }
 
     public function logout(Request $request)
     {
-        session()->forget('user');
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('home');
     }
 }

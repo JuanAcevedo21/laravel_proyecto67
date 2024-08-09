@@ -21,15 +21,18 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
+        // Migración para el restablecimiento de contraseñas
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
+            $table->primary(['email', 'token']); // Asegura que el par email/token sea único
         });
 
+        // Migración para las sesiones
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade'); // Constrain the foreign key
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');
@@ -42,8 +45,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-        Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+        Schema::dropIfExists('password_resets');
+        Schema::dropIfExists('users');
     }
 };
